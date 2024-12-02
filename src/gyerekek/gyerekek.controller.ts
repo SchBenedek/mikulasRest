@@ -19,7 +19,12 @@ export class GyerekekController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.gyerekekService.findOne(+id);
+    if(this.gyerekekService.findOne(+id)){
+      return this.gyerekekService.findOne(+id);
+    }
+    else{
+      return "Nincs ilyen id";
+    }
   }
 
   @Patch(':id')
@@ -27,6 +32,11 @@ export class GyerekekController {
     return this.gyerekekService.update(+id, updateGyerekekDto);
   }
 
+  @Patch(":id")
+  addJatek(@Param('id') id:string){
+    return this.gyerekekService.addJatek(+id);
+  }
+  
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.gyerekekService.remove(+id);

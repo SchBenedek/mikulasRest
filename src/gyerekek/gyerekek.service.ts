@@ -23,9 +23,7 @@ export class GyerekekService {
         where:{
           id:id
         },
-        data:{
-          
-        }
+        data:gy
       })
     }
   }
