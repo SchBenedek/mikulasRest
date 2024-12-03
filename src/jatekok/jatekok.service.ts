@@ -5,24 +5,44 @@ import { PrismaService } from 'src/prisma.service';
 
 @Injectable()
 export class JatekokService {
+  db:PrismaService
+
+  constructor(db:PrismaService){
+    this.db=db
+  }
   
   create(createJatekokDto: CreateJatekokDto) {
-    return 'This action adds a new jatekok';
+    return this.db.jatek.create({
+      data:createJatekokDto
+    });
   }
 
   findAll() {
-    return `This action returns all jatekok`;
+    return this.db.jatek.findMany();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} jatekok`;
+    return this.db.jatek.findUnique({
+      where:{
+        id:id
+      }
+    });
   }
 
   update(id: number, updateJatekokDto: UpdateJatekokDto) {
-    return `This action updates a #${id} jatekok`;
+    return this.db.jatek.update({
+      where:{
+        id:id
+      },
+      data:updateJatekokDto
+    });
   }
 
   remove(id: number) {
-    return `This action removes a #${id} jatekok`;
+    return this.db.jatek.delete({
+      where:{
+        id:id
+      }
+    });
   }
 }
