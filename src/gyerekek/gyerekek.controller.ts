@@ -19,20 +19,15 @@ export class GyerekekController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    if(this.gyerekekService.findOne(+id)){
-      return this.gyerekekService.findOne(+id);
+    return this.gyerekekService.findOne(+id);
     }
-    else{
-      return "Nincs ilyen id";
-    }
-  }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateGyerekekDto: UpdateGyerekekDto) {
     return this.gyerekekService.update(+id, updateGyerekekDto);
   }
 
-  @Patch(":id")
+  @Patch("addJatek/:id")
   addJatek(@Param('id') id:string){
     return this.gyerekekService.addJatek(+id);
   }

@@ -7,7 +7,7 @@ async function main() {
     for(let i=0; i<20; i++){
         await prisma.gyerek.create({
             data:{
-                nev: faker.person.fullName().toString(), // before version 9.1.0, use userName()
+                nev: faker.person.fullName().toString(), 
                 cim: faker.location.country()+" - "+faker.location.city()+" - "+faker.location.street()+" - "+faker.location.street()+" - "+faker.number.int({min:1}),
                 joVoltE: faker.datatype.boolean(0.5)
             }

@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { CreateGyerekekDto } from './dto/create-gyerekek.dto';
 import { UpdateGyerekekDto } from './dto/update-gyerekek.dto';
 import { PrismaService } from 'src/prisma.service';
-import { Jatekok } from 'src/jatekok/entities/jatekok.entity';
 
 @Injectable()
 export class GyerekekService {
@@ -28,26 +27,32 @@ export class GyerekekService {
     }
   }
 
-  create(createGyerekekDto: CreateGyerekekDto) {
-    return this.db.gyerek.create({
+  async create(createGyerekekDto: CreateGyerekekDto) {
+    return await this.db.gyerek.create({
       data:createGyerekekDto
     });
   }
 
-  findAll() {
-    return this.db.gyerek.findMany();
+  async findAll() {
+    return await this.db.gyerek.findMany();
   }
 
-  findOne(id: number) {
-    return this.db.gyerek.findUnique({
+  async findOne(id: number) {
+    const gy=await this.db.gyerek.findUnique({
       where:{
         id:id
       }
-    });
-  }
+    })
+    try {
+      return gy ?? "Nincs ilyen id";
+    } catch (error) {
+      return error;
+    }
+    }
 
-  update(id: number, updateGyerekekDto: UpdateGyerekekDto) {
-    return this.db.gyerek.update({
+  async update(id: number, updateGyerekekDto: UpdateGyerekekDto) {
+
+    return await this.db.gyerek.update({
       where:{
         id:id
       },
@@ -55,8 +60,8 @@ export class GyerekekService {
     });
   }
 
-  remove(id: number) {
-    return this.db.gyerek.delete({
+  async remove(id: number) {
+    return await this.db.gyerek.delete({
       where:{
         id:id
       }
