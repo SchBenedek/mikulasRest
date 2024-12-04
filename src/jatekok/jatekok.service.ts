@@ -11,12 +11,18 @@ export class JatekokService {
     this.db=db
   }
   
+<<<<<<< HEAD
   async create(createJatekokDto: CreateJatekokDto) {
     return await this.db.jatek.create({
+=======
+  create(createJatekokDto: CreateJatekokDto) {
+    return this.db.jatek.create({
+>>>>>>> 785302f35f85c3c48a4bfb0f04949a25f1362e6a
       data:createJatekokDto
     });
   }
 
+<<<<<<< HEAD
   async findAll() {
     return await this.db.jatek.findMany();
   }
@@ -36,6 +42,22 @@ export class JatekokService {
 
   async update(id: number, updateJatekokDto: UpdateJatekokDto) {
     return await this.db.jatek.update({
+=======
+  findAll() {
+    return this.db.jatek.findMany();
+  }
+
+  findOne(id: number) {
+    return this.db.jatek.findUnique({
+      where:{
+        id:id
+      }
+    });
+  }
+
+  update(id: number, updateJatekokDto: UpdateJatekokDto) {
+    return this.db.jatek.update({
+>>>>>>> 785302f35f85c3c48a4bfb0f04949a25f1362e6a
       where:{
         id:id
       },
@@ -43,8 +65,13 @@ export class JatekokService {
     });
   }
 
+<<<<<<< HEAD
   async remove(id: number) {
     return await this.db.jatek.delete({
+=======
+  remove(id: number) {
+    return this.db.jatek.delete({
+>>>>>>> 785302f35f85c3c48a4bfb0f04949a25f1362e6a
       where:{
         id:id
       }

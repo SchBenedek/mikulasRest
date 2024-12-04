@@ -11,19 +11,25 @@ export class GyerekekService {
     this.db=db
   }
 
-  async addJatek(id:number){
-    const gy=await this.db.gyerek.findUnique({
+  async addJatek(gyerekId: number, jatekId: number){
+    const gyerek=await this.db.gyerek.findUnique({
       where:{
-        id:id
+        id:gyerekId
       }
-    })
-    if((gy).joVoltE==true){
-      return this.db.gyerek.update({
-        where:{
-          id:id
-        },
-        data:gy
+    });
+    if(!gyerek){
+      throw new Error("Nem található");
+    }
+    if(gyerek.joVoltE==true){
+      return this.db.gyerekOnJatek.create({
+        data:{
+          gyerekId,
+          jatekId
+        }
       })
+    }
+    else{
+      return "Nem kap"
     }
   }
 
