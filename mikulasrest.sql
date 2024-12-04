@@ -98,7 +98,7 @@ INSERT INTO `gyerek` (`id`, `nev`, `cim`, `joVoltE`) VALUES
 (57, 'Dominick Zulauf', 'New Caledonia - North Rosariostad - Maudie Pines - Rau Cliff - 1630366531398585', 0),
 (58, 'Marcus Dare', 'Guatemala - Boise City - Maudie Junctions - E 9th Street - 2514480849910300', 1),
 (59, 'Estelle Larson', 'Mongolia - West Kianview - Stamm Crescent - Schmitt Lights - 8350564457334130', 1),
-(60, 'Dr. Perry Ruecker', 'Papua New Guinea - O\'Connerland - Woodland Road - 4th Street - 6789624286405042', 0);
+(60, 'Dr. Perry Ruecker', 'Papua New Guinea - O - Connerland - Woodland Road - 4th Street - 6789624286405042', 0);
 
 -- --------------------------------------------------------
 
@@ -182,10 +182,10 @@ INSERT INTO `jatek` (`id`, `megnevezes`, `anyag`, `suly`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `_gyerektojatek`
+-- Tábla szerkezet ehhez a táblához `gyerekOnJatek`
 --
 
-CREATE TABLE `_gyerektojatek` (
+CREATE TABLE `gyerekOnJatek` (
   `A` int(11) NOT NULL,
   `B` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -207,11 +207,11 @@ ALTER TABLE `jatek`
   ADD PRIMARY KEY (`id`);
 
 --
--- A tábla indexei `_gyerektojatek`
+-- A tábla indexei `gyerekOnJatek`
 --
-ALTER TABLE `_gyerektojatek`
-  ADD UNIQUE KEY `_GyerekToJatek_AB_unique` (`A`,`B`),
-  ADD KEY `_GyerekToJatek_B_index` (`B`);
+ALTER TABLE `gyerekOnJatek`
+  ADD UNIQUE KEY `gyerekOnJatek_AB_unique` (`A`,`B`),
+  ADD KEY `gyerekOnJatek_B_index` (`B`);
 
 --
 -- A kiírt táblák AUTO_INCREMENT értéke
@@ -234,11 +234,11 @@ ALTER TABLE `jatek`
 --
 
 --
--- Megkötések a táblához `_gyerektojatek`
+-- Megkötések a táblához `gyerekOnJatek`
 --
-ALTER TABLE `_gyerektojatek`
-  ADD CONSTRAINT `_GyerekToJatek_A_fkey` FOREIGN KEY (`A`) REFERENCES `gyerek` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `_GyerekToJatek_B_fkey` FOREIGN KEY (`B`) REFERENCES `jatek` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `gyerekOnJatek`
+  ADD CONSTRAINT `gyerekOnJatek_A_fkey` FOREIGN KEY (`A`) REFERENCES `gyerek` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `gyerekOnJatek_B_fkey` FOREIGN KEY (`B`) REFERENCES `jatek` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
